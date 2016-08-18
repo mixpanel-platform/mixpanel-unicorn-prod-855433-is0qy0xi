@@ -7,9 +7,25 @@
     <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
   </head>
   <body class="mixpanel-platform-body">
-    <h1>Hello, World!</h1>
     <script>
-      // Run queries and display results here
+    var script = $('#jql').html()
+    var queryParams = {
+     currentDate: '2016-01-01',
+     startingDate:'2016-01-02'
+    }
+    
+    MP.api.jql(script, queryParams)
+    .done(function(results) {
+      console.log(results)
+    })
+    </script>
+    <script type="text/jql" id="jql">
+    function main() {
+     return Events({
+      from_date: params.currentDate,
+      to_date: params.startingDate
+     });
+    }
     </script>
   </body>
 </html>
